@@ -1,0 +1,7 @@
+streamlit
+streamlit-aggrid==0.2.2-2
+click
+pickle
+numpy==1.21.0
+plotly ==5.1.0
+sklearn == 1.0.2
