@@ -9,11 +9,7 @@ st.set_page_config(page_title = "Visitor Conversion Prediction"
                     ,layout = "wide")
 
 # page title 
-st.title( "Price and Sales relationship :bar_chart:")
-
-
-# Opening intro text
-st.write("# Will the website visitor convert? ✨")
+st.title( "Will the website visitor convert? ✨")
 
 st.write("### Describe the visitor:")
 
