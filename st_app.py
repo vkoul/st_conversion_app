@@ -5,8 +5,8 @@ import pickle
 
 # setting the basic configuration of the web app. This is shown in the Tab
 st.set_page_config(page_title = "Visitor Conversion Prediction" 
-                    ,page_icon = ":bar_chart:" 
-                    ,layout = "wide")
+                    ,page_icon = ":bar_chart:")
+                   # ,layout = "wide")
 
 # page title 
 st.title( "Will the website visitor convert? ✨")
