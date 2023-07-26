@@ -113,7 +113,7 @@ columns = ['age', 'new_user', 'total_pages_visited', 'country_Germany', 'country
 visting_user = pd.DataFrame(dict(zip(columns, row)), index=[0])
 
 # Show the table?
-# st.table(visting_user)
+st.table(visting_user)
 
 # Now predicting!
 if st.button(label="Click to Predict"):
