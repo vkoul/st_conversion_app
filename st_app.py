@@ -41,50 +41,74 @@ user_age = st.slider('How old is the visitor?🗓️', 3, 80, 2)
 pages_visited = st.slider('How many pages visited?📃', 1, 30, 1)
 
 
-# Cleaning up the details before putting into the df
-if customer_country == 'Germany':
-    country_Germany = 1
-    country_UK = 0
-    country_US = 0
+# # Cleaning up the details before putting into the df
+# if customer_country == 'Germany':
+#     country_Germany = 1
+#     country_UK = 0
+#     country_US = 0
     
-elif customer_country == 'UK':
-    country_Germany = 0
-    country_UK = 1
+# elif customer_country == 'UK':
+#     country_Germany = 0
+#     country_UK = 1
 
-    country_US = 0
+#     country_US = 0
 
-elif customer_country == 'China':
-    country_Germany = 0
-    country_UK = 0
-    country_US = 0
+# elif customer_country == 'China':
+#     country_Germany = 0
+#     country_UK = 0
+#     country_US = 0
 
-else:
-    country_Germany = 0
-    country_UK = 0
-    country_US = 1
-
-
-# Source
-if channel == 'Seo':
-    source_Direct = 0
-    source_Seo = 1
+# else:
+#     country_Germany = 0
+#     country_UK = 0
+#     country_US = 1
 
 
-elif channel == 'Ads':
-    source_Direct = 0
-    source_Seo = 0
+# # Source
+# if channel == 'Seo':
+#     source_Direct = 0
+#     source_Seo = 1
 
-else:
-    source_Direct = 1
-    source_Seo = 0
+
+# elif channel == 'Ads':
+#     source_Direct = 0
+#     source_Seo = 0
+
+# else:
+#     source_Direct = 1
+#     source_Seo = 0
 
     
+
+# # Creating the dataframe to run predictions on
+# row = [user_age, new_user, pages_visited, country_Germany, country_UK, country_US, source_Direct, source_Seo]
+# columns = [
+#         'age', 'new_user', 'total_pages_visited', 'country_Germany', 
+#         'country_UK', 'country_US', 'source_Direct', 'source_Seo']
+
+
+# Mapping dictionaries for country and source
+country_mapping = {
+    'Germany': [1, 0, 0],
+    'UK': [0, 1, 0],
+    'China': [0, 0, 0],
+    'US': [0, 0, 1]
+}
+
+source_mapping = {
+    'Seo': [0, 1],
+    'Ads': [0, 0],
+    'Direct': [1, 0]
+}
+
+# Extract the country and source values from user inputs
+country_values = country_mapping.get(customer_country, [0, 0, 0])
+source_values = source_mapping.get(channel, [1, 0])
 
 # Creating the dataframe to run predictions on
-row = [user_age, new_user, pages_visited, country_Germany, country_UK, country_US, source_Direct, source_Seo]
-columns = [
-        'age', 'new_user', 'total_pages_visited', 'country_Germany', 
-        'country_UK', 'country_US', 'source_Direct', 'source_Seo']
+row = [user_age, new_user, pages_visited] + country_values + source_values
+columns = ['age', 'new_user', 'total_pages_visited', 'country_Germany', 'country_UK', 'country_US', 'source_Direct', 'source_Seo']
+
 
 visting_user = pd.DataFrame(dict(zip(columns, row)), index=[0])
 
