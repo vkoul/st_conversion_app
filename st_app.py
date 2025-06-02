@@ -11,6 +11,29 @@ st.set_page_config(page_title = "Visitor Conversion Prediction"
 # page title 
 st.title( "Will the website visitor convert? ✨")
 
+with st.expander("About this app"):
+
+    st.write("")
+
+    st.markdown(
+        """
+This interactive app simulates a classification use case to predict whether a website visitor will convert based on key features.
+
+Users can input the visitor's:
+
+* Country of origin
+* Traffic source (Ads, SEO, or Direct)
+* User status (New or Returning)
+* Age
+* Number of pages visited
+
+The prediction is made using a pre-trained classification model that identifies patterns in user behavior to estimate conversion likelihood. 
+This is a practical demonstration of applying machine learning to real-world digital marketing and user analytics scenarios.
+    """
+    )
+
+
+
 st.write("### Describe the visitor:")
 
 # Creating columns to make the intake details look nicer
