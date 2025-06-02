@@ -116,7 +116,7 @@ visting_user = pd.DataFrame(dict(zip(columns, row)), index=[0])
 # st.table(visting_user)
 
 # Now predicting!
-if st.button(label="Click to Predict"):
+if st.button(label="👆Click to Predict Conversion"):
 
     # Load the model
     loaded_model = pickle.load(open('rf_model_conversion.sav', 'rb'))
