@@ -3,6 +3,17 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+# To cache the model preventing multiple reloads
+@st.cache_resource
+def load_model():
+    with open("rf_model_conversion.sav", "rb") as f:
+        return pickle.load(f)
+
+loaded_model = load_model()
+
+
+
+
 # setting the basic configuration of the web app. This is shown in the Tab
 st.set_page_config(page_title = "Visitor Conversion Prediction" 
                     ,page_icon = ":bar_chart:")
@@ -141,9 +152,6 @@ visting_user = pd.DataFrame(dict(zip(columns, row)), index=[0])
 # Now predicting!
 if st.button(label="👆Click to Predict Conversion"):
 
-    # Load the model
-    loaded_model = pickle.load(open('rf_model_conversion.sav', 'rb'))
-    
     # Make predictions (and get out pred probabilities)
     pred = loaded_model.predict(visting_user)[0]
     proba = loaded_model.predict_proba(visting_user)[:,1][0]
@@ -156,3 +164,4 @@ if st.button(label="👆Click to Predict Conversion"):
     elif pred == 1:
         st.write("### The visitor is predicted to convert!🥳✨🎉")
         st.write(f"Predicted probability of conversion: {proba*100:.2f} %")
+
